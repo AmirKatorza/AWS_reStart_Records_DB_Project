@@ -25,8 +25,8 @@ function delete() {
     # if we try to delete more than the amount we will need to prompt an error message
     # echo Success/Failure
     # write to log file
-
 }
+
 function search() {
     # Rahamim
     # depends on sort()
@@ -83,13 +83,20 @@ function write_to_log() {
 
 # db_file_path=$1
 
+if [[ -s $filname ]] 
+then    
+    echo error
+else
+    $(cat $filename | sort)
+
 function main() {
-    select in Insert Delete Search Update_Name Update_Amount Print_Amount Print_All Exit
+    select opt in Insert Delete Search Update_Name Update_Amount Print_Amount Print_All Exit
     do
-        case opt in 
+        case $opt in 
             Insert )
             ;;
             Delete )
+                
             ;; 
             Search )
             ;; 
@@ -104,7 +111,7 @@ function main() {
             Exit )
                 exit
             ;;
-
         esac
     done
 }
+
