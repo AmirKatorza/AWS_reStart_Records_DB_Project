@@ -11,19 +11,17 @@ function search() {
     # write to log file
     local keyphrase=$1
     local search_results="search_results.sh"
-    $(grep -i $keyphrase $db_file | sort > $search_results)
+    $(grep -i $keyphrase $db_file | sort | nl > $search_results)
+    print_search_file $search_results
     echo $search_results
 }
 
 function print_search_file() {
     local file_name=$1
-    index=1
     while read ln
     do
-        echo "$index: $ln"
-        (( index++ ))
+        echo $ln
     done < $file_name
-    echo "0: Cancel"
 }
 
 function delete() {
@@ -122,6 +120,31 @@ function print_all_sorted() {
     fi
 }
 
+function print_randa() {
+    if [ ! -f $db_file ]; 
+    then
+        echo "No records found."
+    else
+        # Sort records file by album name and count occurrences
+        sort $db_file > sorted_records.txt   
+  
+        # Print sorted records
+        echo -e "Album Name\tCount"
+        while read line; 
+        do
+            local name=$(echo $line | awk -F "," '{print $1}')
+            local count=$(echo $line | awk -F "," '{print $2}')            
+            echo -e "$name\t$count"
+        done < sorted_records.txt
+
+        # Log result and return to main menu
+        echo "Sorted records printed."
+        echo "$(date): Printed sorted records" >> log.txt
+    fi
+}
+
 db_file="recordsDB.csv"
 # print_amount 
-print_all_sorted
+# print_all_sorted
+# print_randa
+search_results_file=$(search b)

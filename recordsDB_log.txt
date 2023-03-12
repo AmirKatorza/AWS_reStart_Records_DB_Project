@@ -1,0 +1,15 @@
+2023-03-12 21:09:19 Insert Success
+2023-03-12 21:10:15 Search Failure
+2023-03-12 21:11:01 Search Success
+2023-03-12 21:11:30 PrintAmount 55
+2023-03-12 21:11:36 PrintAll Abbey Road 6
+2023-03-12 21:11:36 PrintAll Amir 7
+2023-03-12 21:11:36 PrintAll Blood on the Tracks 5
+2023-03-12 21:11:36 PrintAll Blue 5
+2023-03-12 21:11:36 PrintAll Nevermind 2
+2023-03-12 21:11:36 PrintAll Pet Sounds 3
+2023-03-12 21:11:36 PrintAll Purple Rain 8
+2023-03-12 21:11:36 PrintAll Rumours 1
+2023-03-12 21:11:36 PrintAll Songs in the Key of Life 1
+2023-03-12 21:11:36 PrintAll The Miseducation of Lauryn Hill 5
+2023-03-12 21:11:36 PrintAll Whats Going On 12

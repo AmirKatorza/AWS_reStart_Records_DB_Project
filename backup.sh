@@ -1,8 +1,7 @@
 #! /bin/bash
 
 function search() {
-    # Rahamim
-    # depends on sort()
+    # relies on sort() function
     # gets: string with a record name or part of name
     # use use 'grep' to search the file and return values accordingly
     # if there is more then one result for the search
@@ -15,9 +14,13 @@ function search() {
     if [ -s $search_results_file ];
     then    
         print_search_file $search_results
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$timestamp Search Success" >> recordsDB_log.txt
         echo $search_results
     else
-        echo "Failure"
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$timestamp Search Failure" >> recordsDB_log.txt
+        echo "No matching records were found"
         echo ""
     fi
 }
@@ -181,18 +184,20 @@ function update_amount() {
 }
 
 function print_amount() {
-    # Mohammad
     # gets: void
     # loop over all the records and sum the amount values
     # if sum > 0 echo sum
     # else prompt "File is empty"
     # write to log file
     local total=$(awk -F "," '{Total=Total+$2} END{print Total}' $db_file)
-    # echo $total
     if [ $total -gt 0 ];
     then    
-        echo "The total number of record is: $total"
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$timestamp PrintAmount $total" >> recordsDB_log.txt
+        echo "The total number of record in Data Base is: $total"
     else
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$timestamp PrintAmount Failure" >> recordsDB_log.txt
         echo "There are no records in the Data Base at the current time"
     fi
 }
@@ -206,12 +211,19 @@ function print_all_sorted() {
     if [[ -s $db_file ]] 
     then    
         $(sort $db_file > sorted_df.csv)
+        echo "Printing all records in Data Base: "
         while read ln
         do
             echo "$ln"
+            local record_name=$(echo $line | awk -F "," '{print $1}')
+            local record_count=$(echo $line | awk -F "," '{print $2}')
+            local timestamp=$(date +"%Y-%m-%d %H:%M:%S")            
+            echo "$timestamp PrintAll $name $count" >> recordsDB_log.txt 
         done < sorted_df.csv
     else
-        echo "Data Base is empty!"        
+        echo "No records found. Data Base is empty!" 
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$timestamp PrintAll Failure" >> recordsDB_log.txt        
     fi
 }
 
