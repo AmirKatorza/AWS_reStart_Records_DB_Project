@@ -14,3 +14,16 @@
 2023-03-12 21:11:36 PrintAll The Miseducation of Lauryn Hill 5
 2023-03-12 21:11:36 PrintAll Whats Going On 12
 2023-03-12 21:24:36 Insert Success
+2023-03-12 21:25:54 Search Success
+2023-03-12 21:26:07 PrintAmount 60
+2023-03-12 21:26:12 PrintAll Abbey Road 6
+2023-03-12 21:26:12 PrintAll Amir 7
+2023-03-12 21:26:12 PrintAll Blood on the Tracks 5
+2023-03-12 21:26:12 PrintAll Blue 5
+2023-03-12 21:26:12 PrintAll Nevermind 2
+2023-03-12 21:26:12 PrintAll Pet Sounds 3
+2023-03-12 21:26:12 PrintAll Purple Rain 8
+2023-03-12 21:26:12 PrintAll Rumours 1
+2023-03-12 21:26:12 PrintAll Songs in the Key of Life 1
+2023-03-12 21:26:12 PrintAll The Miseducation of Lauryn Hill 10
+2023-03-12 21:26:12 PrintAll Whats Going On 12
