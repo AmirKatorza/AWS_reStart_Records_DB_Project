@@ -288,7 +288,7 @@ function main() {
             Insert )
                 read -p "Please enter the record name or part of it: " name1
                 read -p "Please enter the record amount that you wish to add: " amount1
-                if [[ $name1 =~ ^[a-zA-Z0-9\s]+$ ]] && [[ $amount1 =~ ^[1-9]{1}[0-9]*$ ]]
+                if [[ $name1 =~ ^[a-zA-Z0-9\s]+$ && $amount1 =~ ^[1-9]{1}[0-9]*$ ]]
                 then
                     add_record $name1 $amount1
                 else
@@ -299,7 +299,7 @@ function main() {
             Delete )                
                 read -p "Please enter the record name or part of it: " name 
                 read -p "Please enter the record amount that you wish to add " amount
-                if [[ $name =~ ^[A-Za-z0-9 ]+$\s ]] && [[ $amount =~ ^[1-9]{1}[0-9]*$ ]];
+                if [[ $name =~ ^[A-Za-z0-9\s]+$ && $amount =~ ^[1-9]{1}[0-9]*$ ]];
                 then
                     delete $name $amount
                 else
@@ -320,7 +320,7 @@ function main() {
             Update_Name )
                 read -p "Please enter the record name or part of it: " old_name 
                 read -p "Please enter the new name you wish to replace: " new_name
-                if [[ $old_name =~ ^[A-Za-z0-9\s]+$ ]] && [[ $new_name =~ ^[A-Za-z0-9\s]+$ ]];
+                if [[ $old_name =~ ^[A-Za-z0-9\s]+$ && $new_name =~ ^[A-Za-z0-9\s]+$ ]];
                 then
                     update_name $old_name $new_name
                 else
@@ -331,7 +331,7 @@ function main() {
             Update_Amount )
                 read -p "Please enter the record name or part of it: " name 
                 read -p "Please enter the record amount that you wish to add " amount
-                if [[ $name =~ ^[A-Za-z0-9\s]+$ ]] && [[ $amount =~ ^[1-9]{1}[0-9]*$ ]];
+                if [[ $name =~ ^[A-Za-z0-9\s]+$ && $amount =~ ^[1-9]{1}[0-9]*$ ]];
                 then
                     update_amount $name $amount
                 else
