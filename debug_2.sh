@@ -147,4 +147,8 @@ db_file="recordsDB.csv"
 # print_amount 
 # print_all_sorted
 # print_randa
-search_results_file=$(search b)
+# search_results_file=$(search b)
+select var in amir victor roni
+do
+    echo "selectet number is $REPLY - $var was selected"
+done
