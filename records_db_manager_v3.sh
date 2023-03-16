@@ -20,10 +20,10 @@ function Search() {
     if [ -s $search_file ]
     then    
         cat $search_file | nl
-        write_to_log ${FUNCNAME[0]} 1 # 1 means success        
+        write_to_log ${FUNCNAME[0]} "Success" # 1 means success        
     else
         echo "Failure: No matching records were found"
-        write_to_log ${FUNCNAME[0]} 0 # 0 mean Failure       
+        write_to_log ${FUNCNAME[0]} "Failure" # 0 mean Failure       
     fi
 }  
 
@@ -57,6 +57,7 @@ function choose_record_update() {
             fi
         done
         return $user_choice
+    fi
 }
 
 function UpdateName() {
@@ -80,14 +81,14 @@ function UpdateName() {
             local record_chosen=$(sed -n ${choice}p $search_results_file)
             local current_name=$(echo $record_chosen | cut -d "," f 1) 
             $(sed -i 's/$current_name/$new_name/g' $db_file)
-            write_to_log ${FUNCNAME[0]} 1
+            write_to_log ${FUNCNAME[0]} "Success"
             echo "Success: Record was updated Succefuly!"
         else
-            write_to_log ${FUNCNAME[0]} 0
+            write_to_log ${FUNCNAME[0]} "Failure"
             echo "Failure: User chose to Abort!"
         fi
     else
-        write_to_log ${FUNCNAME[0]} 0
+        write_to_log ${FUNCNAME[0]} "Failure"
         echo "Failure: Record was not found!"
     fi
 }
@@ -115,14 +116,14 @@ function UpdateAmount() {
             local record_chosen=$(sed -n ${choice}p $search_results_file)
             local updaed_record=$(echo $record_chosen | awk -F "," '$2=${new_amount}')
             $(sed -i 's/$record_chosen/$updated_record/g' $db_file) 
-            write_to_log ${FUNCNAME[0]} 1
+            write_to_log ${FUNCNAME[0]} "Success"
             echo "Success: Record was updated Succefuly!"
         else
-            write_to_log ${FUNCNAME[0]} 0
+            write_to_log ${FUNCNAME[0]} "Failure"
             echo "Failure: User chose to Abort!"
         fi
     else
-        write_to_log ${FUNCNAME[0]} 0
+        write_to_log ${FUNCNAME[0]} "Failure"
         echo "Failure: Record was not found!"        
     fi    
 }
@@ -153,18 +154,18 @@ function Insert() {
             local updated_amount=$(( $current_amount + $amount ))   # Update records amount after addition 
             local updated_record="${record_array[0]},${updated_amount}" # Concat record name to updated amount
             $(sed -i "s/${record_chosen}/${updated_record}/g" $db_file)    # Update the DB file
-            write_to_log ${FUNCNAME[0]} 1
+            write_to_log ${FUNCNAME[0]} "Success"
             echo "Success: Record was updated successfully"      # Print Success
         else    # Append new record to DB file
             local updated_record="${record_name},${amount}"
             echo "$updated_record" >> $db_file
-            write_to_log ${FUNCNAME[0]} 1
+            write_to_log ${FUNCNAME[0]} "Success"
             echo "Success: New record was added successfully!"  
         fi
     else
         local updated_record="${record_name},${amount}"
         echo "$updated_record" >> $db_file
-        write_to_log ${FUNCNAME[0]} 1
+        write_to_log ${FUNCNAME[0]} "Success"
         echo "Success: New record was added successfully!"
     fi
 }
@@ -195,7 +196,7 @@ function Delete() {
             local current_amount=${record_array[1]}                # Extract current amount of records
             if [ $current_amount -lt $amount ];     # If amount given was greater then current amount print "Failure"
             then      
-                write_to_log ${FUNCNAME[0]} 0
+                write_to_log ${FUNCNAME[0]} "Failure"
                 echo "Failure: Amount is higher than inventory"
             else
                 local updated_amount=$(( $current_amount - $amount ))   # Update records amount after deletion 
@@ -206,11 +207,11 @@ function Delete() {
                     local updated_record="${rec_array[0]},${updated_amount}" # Concat record name to updated amount
                     $(sed -i "s/${record_chosen}/${updated_record}/g" $db_file)    # Update the DB file
                 fi
-                write_to_log ${FUNCNAME[0]} 1
+                write_to_log ${FUNCNAME[0]} "Success"
                 echo "Success: Record was deleted successfully!"      # Print Success
             fi
         else
-            write_to_log ${FUNCNAME[0]} 0
+            write_to_log ${FUNCNAME[0]} "Failure"
             echo "Failure: User chose to Abort!"
         
         fi        
@@ -234,7 +235,7 @@ function PrintAmount() {
         write_to_log ${FUNCNAME[0]} "$total"
         echo "The total number of record in Data Base is: $total"
     else
-        write_to_log ${FUNCNAME[0]} 0
+        write_to_log ${FUNCNAME[0]} "Failure"
         echo "There are no records in the Data Base at the current time"
     fi
 }
@@ -259,7 +260,7 @@ function PrintAll() {
             write_to_log ${FUNCNAME[0]} "$tmp_record"               
         done < sorted_df.csv
     else
-        write_to_log ${FUNCNAME[0]} 0
+        write_to_log ${FUNCNAME[0]} "Failure"
         echo "No records found. Data Base is empty!"                
     fi
 }
@@ -267,14 +268,8 @@ function PrintAll() {
 function write_to_log() {
     local action=$1
     local indication=$2
-    if [ $indication -eq 1 ]
-    then
-        indication="Success"
-    else
-        indication="Failure"
-    fi
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")        
-    echo "$timestamp $option $indication" >> recordsDB_log.txt    
+    echo "$timestamp $action $indication" >> recordsDB_log.txt    
 }
 
 function main() {
@@ -331,7 +326,7 @@ function main() {
                 read -p "Please enter the new name you wish to replace: " new_name
                 if [[ $old_name =~ ^[A-Za-z0-9\s]+$ && $new_name =~ ^[A-Za-z0-9\s]+$ ]];
                 then
-                    update_name $old_name $new_name
+                    UpdateName $old_name $new_name
                 else
                     echo "Input is invalid"
                 fi
@@ -342,22 +337,22 @@ function main() {
                 read -p "Please enter the record amount that you wish to add " amount
                 if [[ $name =~ ^[A-Za-z0-9\s]+$ && $amount =~ ^[1-9]{1}[0-9]*$ ]];
                 then
-                    update_amount $name $amount
+                    UpdateAmount $name $amount
                 else
                     echo "Input is invalid"
                 fi
                 read -p "Press Enter to Continue" 
             ;; 
             6 )
-                print_amount
+                PrintAmount
                 read -p "Press Enter to Continue" 
             ;; 
             7 )
-                print_all_sorted
+                PrintAll
                 read -p "Press Enter to Continue" 
             ;;
             8 )
-                exit
+                flag=0
             ;;
             * )
                 echo "Please enter a valid number between 1-8"

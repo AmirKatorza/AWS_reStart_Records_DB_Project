@@ -27,3 +27,38 @@
 2023-03-12 21:26:12 PrintAll Songs in the Key of Life 1
 2023-03-12 21:26:12 PrintAll The Miseducation of Lauryn Hill 10
 2023-03-12 21:26:12 PrintAll Whats Going On 12
+2023-03-16 22:41:44  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:41:50  Failure
+2023-03-16 22:45:48 PrintAll Abbey Road 6
+2023-03-16 22:45:48 PrintAll Amir 7
+2023-03-16 22:45:48 PrintAll Blood on the Tracks 5
+2023-03-16 22:45:48 PrintAll Blue 5
+2023-03-16 22:45:48 PrintAll Nevermind 2
+2023-03-16 22:45:48 PrintAll Pet Sounds 3
+2023-03-16 22:45:48 PrintAll Purple Rain 8
+2023-03-16 22:45:48 PrintAll Rumours 1
+2023-03-16 22:45:48 PrintAll Songs in the Key of Life 1
+2023-03-16 22:45:48 PrintAll The Miseducation of Lauryn Hill 10
+2023-03-16 22:45:48 PrintAll Whats Going On 12
+2023-03-16 22:53:40 PrintAll Abbey Road 6
+2023-03-16 22:53:40 PrintAll Amir 7
+2023-03-16 22:53:40 PrintAll Blood on the Tracks 5
+2023-03-16 22:53:40 PrintAll Blue 5
+2023-03-16 22:53:40 PrintAll Nevermind 2
+2023-03-16 22:53:40 PrintAll Pet Sounds 3
+2023-03-16 22:53:40 PrintAll Purple Rain 8
+2023-03-16 22:53:40 PrintAll Rumours 1
+2023-03-16 22:53:40 PrintAll Songs in the Key of Life 1
+2023-03-16 22:53:40 PrintAll The Miseducation of Lauryn Hill 10
+2023-03-16 22:53:40 PrintAll Whats Going On 12
+2023-03-16 22:54:03 PrintAmount 60
