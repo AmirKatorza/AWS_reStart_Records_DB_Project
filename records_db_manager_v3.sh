@@ -95,13 +95,10 @@ function UpdateName() {
 
 function UpdateAmount() {
     
-    # depends name of record, amount
-    # if amount < 0 echo "error message"
     # get: old name, new name
     # if more then one match than prompt a menu with matches number
     # if no match echo Failure
-    # else update te record use 'sed' utility
-    # echo Success/Failure
+    # else update the record
     # write to log file
 
     local record_name=$1
@@ -277,15 +274,16 @@ function main() {
     while [ $flag -eq 1 ]
     do
         clear
-        echo "-------------Records Data Base-------------"
+        echo "-------------Records Data Base-------------------------"
         echo "1 - Add a new record to DB or update update quantity."
         echo "2 - Delete a record from DB or update quantity."
         echo "3 - Search a record in DB."
         echo "4 - Update a name of a record."
         echo "5 - Update quantity of a record."
         echo "6 - Print the Sum of all records in the DB."
-        echo "7 - Print the entire DB sorted bt name."
+        echo "7 - Print the entire DB sorted by name."
         echo "8 - Exit!"
+        echo "-------------------------------------------------------"
         read -p "Please choose you action :" opt
 
         case $opt in 
