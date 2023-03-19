@@ -47,8 +47,10 @@ function choose_record_update() {
         while [ $flag -eq 0 ]
         do
             echo "Please enter the number of record you wish to update: "
+            echo "-------------------------------------------------------"
             cat $search_file | nl -v 0            
-            read user_choice
+            echo "-------------------------------------------------------"
+            read -p "Your choice is: " user_choice
             if [[ $user_choice =~ ^[0-9]+$ && $user_choice -le $num_lines ]] # Check whether user choice is valid
             then   
                 flag=1
